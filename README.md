@@ -1,7 +1,7 @@
 TrilobitDatabaseFormFieldOptionsBundle
 ======================================
 
-Mit der DatabaseFormFieldOptions Erweiterung werden dem Formulargenerator, im Contao Backend eine Anzahl Eingabefeld-Typen ergänzt. Zu den Eingabefeld-Typen gehören:
+Mit dem DatabaseFormFieldOptions Bundle werden dem Contao Formulargenerator neue Eingabefeld-Typen hinzugefügt:
 
 * Country-Select
 * Language-Select
@@ -9,11 +9,11 @@ Mit der DatabaseFormFieldOptions Erweiterung werden dem Formulargenerator, im Co
 * Database-Radio - siehe Database-Select
 * Database-Checkbox - siehe Database-Select
 
-Bei allen DB Feldern besteht die Möglichkeit, manuell eigenen Optionen zu ergänzen, eine Leerauswahl hinzu zu fügen sowie Filter zu definieren (z.B. pid=...). Dabei muss jedoch bedacht werden, das die Filter durch SQL-Injections ein gewisses Risiko beinhalten.
+Bei allen DB Feldern besteht die Möglichkeit, manuell eigenen Optionen zu ergänzen, eine Leerauswahl hinzuzufügen sowie Filter zu definieren (z.B. pid=...). Dabei muss jedoch bedacht werden, das die Filter durch SQL-Injections ein gewisses Risiko beinhalten!
 
 ---
 
-With the DatabaseFormFieldOptions extension, a number of input field types are added to the form generator in the Contao backend. The input field types include:
+With the DatabaseFormFieldOptions Bundle, new input field types are added to the Contao form generator
 
 * Country select
 * Language-Select
