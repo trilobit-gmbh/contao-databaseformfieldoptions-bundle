@@ -12,7 +12,7 @@ namespace Trilobit\DatabaseformfieldoptionsBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Configures the trilobit pkg bundle.
+ * Configures the trilobit database formfield options bundle.
  *
  * @author trilobit GmbH <https://github.com/trilobit-gmbh>
  */

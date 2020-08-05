@@ -3,7 +3,6 @@
     "type": "contao-bundle",
     "description": "Contao 4 database formfield options bundle",
     "license": "LGPL-3.0-or-later",
-    "version": "0.0.1",
     "authors": [
         {
             "name": "trilobit GmbH",
