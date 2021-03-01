@@ -62,11 +62,11 @@ class Options extends Widget
         $chkCurrentGroup = '';
         $currentGroup = '';
 
-        if ($this->addBlankOption) {
+        if ($field->addBlankOption) {
             $arrOptions = [[
                 'type' => 'option',
                 'value' => '',
-                'selected' => $this->isSelected(['value' => '']),
+                'selected' => $field->isSelected(['value' => '']),
                 'label' => '-',
             ]];
         }
