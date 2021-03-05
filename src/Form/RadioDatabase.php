@@ -19,6 +19,13 @@ use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 class RadioDatabase extends FormRadioButton
 {
     /**
+     * Template.
+     *
+     * @var string
+     */
+    protected $strTemplate = 'form_radioDatabase';
+
+    /**
      * FormRadioDatabase constructor.
      *
      * @param null $arrAttributes

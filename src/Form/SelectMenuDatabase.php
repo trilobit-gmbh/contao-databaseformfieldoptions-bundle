@@ -19,6 +19,13 @@ use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 class SelectMenuDatabase extends FormSelectMenu
 {
     /**
+     * Template.
+     *
+     * @var string
+     */
+    protected $strTemplate = 'form_selectDatabase';
+
+    /**
      * FormSelectMenuDatabase constructor.
      *
      * @param null $arrAttributes
