@@ -26,9 +26,9 @@ class Options extends Widget
      */
     private $field;
 
-    public function generate()
+    public function generate(): string
     {
-        parent::generate();
+        return '';
     }
 
     public static function getAllTables()

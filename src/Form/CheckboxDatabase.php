@@ -19,6 +19,13 @@ use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 class CheckboxDatabase extends FormCheckBox
 {
     /**
+     * Template.
+     *
+     * @var string
+     */
+    protected $strTemplate = 'form_checkboxDatabase';
+
+    /**
      * FormCheckboxDatabase constructor.
      *
      * @param null $arrAttributes

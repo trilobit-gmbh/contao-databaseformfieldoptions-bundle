@@ -19,6 +19,13 @@ use Contao\StringUtil;
 class SelectMenuLanguage extends FormSelectMenu
 {
     /**
+     * Template.
+     *
+     * @var string
+     */
+    protected $strTemplate = 'form_selectLanguage';
+
+    /**
      * FormSelectMenuCountry constructor.
      *
      * @param null $arrAttributes
