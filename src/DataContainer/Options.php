@@ -28,7 +28,6 @@ class Options extends Widget
 
     public function generate()
     {
-        parent::generate();
     }
 
     public static function getAllTables()
