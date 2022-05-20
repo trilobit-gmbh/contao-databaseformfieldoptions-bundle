@@ -13,6 +13,7 @@ $customSelect = str_replace('{options_legend},options;', '{options_legend},sourc
 
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['selectCountry'] = str_replace('{options_legend},options;', '{options_legend},addBlankOption,sourceCustomOptions;', $GLOBALS['TL_DCA']['tl_form_field']['palettes']['select']);
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['selectLanguage'] = str_replace('{options_legend},options;', '{options_legend},addBlankOption,sourceCustomOptions;', $GLOBALS['TL_DCA']['tl_form_field']['palettes']['select']);
+$GLOBALS['TL_DCA']['tl_form_field']['palettes']['selectGender'] = str_replace('{options_legend},options;', '{options_legend},addBlankOption,sourceCustomOptions;', $GLOBALS['TL_DCA']['tl_form_field']['palettes']['select']);
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['selectDatabase'] = $customSelect;
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['checkboxDatabase'] = $customSelect;
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['radioDatabase'] = $customSelect;
