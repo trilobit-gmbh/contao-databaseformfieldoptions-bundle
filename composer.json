@@ -10,9 +10,8 @@
         }
     ],
     "require": {
-        "contao/core-bundle": "~4.9",
         "php": "^7.3",
-        "ext-curl": "*"
+        "contao/core-bundle": "~4.9"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",
@@ -28,5 +27,11 @@
     },
     "extra": {
         "contao-manager-plugin": "Trilobit\\DatabaseformfieldoptionsBundle\\ContaoManager\\Plugin"
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "contao/manager-plugin": true
+        }
     }
 }
