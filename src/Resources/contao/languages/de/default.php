@@ -18,3 +18,5 @@ $GLOBALS['TL_LANG']['FFL']['selectCountry'][0] = 'Länder Select-Menü';
 $GLOBALS['TL_LANG']['FFL']['selectCountry'][1] = 'Ein ein- oder mehrzeiliges Drop-Down-Menü.';
 $GLOBALS['TL_LANG']['FFL']['selectLanguage'][0] = 'Sprachen Select-Menü';
 $GLOBALS['TL_LANG']['FFL']['selectLanguage'][1] = 'Ein ein- oder mehrzeiliges Drop-Down-Menü.';
+$GLOBALS['TL_LANG']['FFL']['selectGender'][0] = 'Geschlecht Select-Menü';
+$GLOBALS['TL_LANG']['FFL']['selectGender'][1] = 'Ein ein- oder mehrzeiliges Drop-Down-Menü.';

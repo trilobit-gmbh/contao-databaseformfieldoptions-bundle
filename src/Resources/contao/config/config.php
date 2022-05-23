@@ -13,10 +13,12 @@ use Trilobit\DatabaseformfieldoptionsBundle\Form\CheckboxDatabase;
 use Trilobit\DatabaseformfieldoptionsBundle\Form\RadioDatabase;
 use Trilobit\DatabaseformfieldoptionsBundle\Form\SelectMenuCountry;
 use Trilobit\DatabaseformfieldoptionsBundle\Form\SelectMenuDatabase;
+use Trilobit\DatabaseformfieldoptionsBundle\Form\SelectMenuGender;
 use Trilobit\DatabaseformfieldoptionsBundle\Form\SelectMenuLanguage;
 
 $GLOBALS['TL_FFL']['selectCountry'] = SelectMenuCountry::class;
 $GLOBALS['TL_FFL']['selectLanguage'] = SelectMenuLanguage::class;
+$GLOBALS['TL_FFL']['selectGender'] = SelectMenuGender::class;
 $GLOBALS['TL_FFL']['selectDatabase'] = SelectMenuDatabase::class;
 $GLOBALS['TL_FFL']['checkboxDatabase'] = CheckboxDatabase::class;
 $GLOBALS['TL_FFL']['radioDatabase'] = RadioDatabase::class;
