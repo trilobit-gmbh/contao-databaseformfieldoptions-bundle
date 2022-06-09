@@ -18,3 +18,5 @@ $GLOBALS['TL_LANG']['FFL']['selectCountry'][0] = 'Country select menu';
 $GLOBALS['TL_LANG']['FFL']['selectCountry'][1] = 'A list of multiple options from which any can be selected.';
 $GLOBALS['TL_LANG']['FFL']['selectLanguage'][0] = 'Language select menu';
 $GLOBALS['TL_LANG']['FFL']['selectLanguage'][1] = 'A list of multiple options from which any can be selected.';
+$GLOBALS['TL_LANG']['FFL']['selectGender'][0] = 'Gender select menu';
+$GLOBALS['TL_LANG']['FFL']['selectGender'][1] = 'A list of multiple options from which any can be selected.';
