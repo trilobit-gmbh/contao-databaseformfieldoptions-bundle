@@ -5,6 +5,7 @@ Mit dem DatabaseFormFieldOptions Bundle werden dem Contao Formulargenerator neue
 
 * Country-Select
 * Language-Select
+* Gender-Select
 * Database-Select (unter Angabe, welche Tabelle, welche Spalte die Optionen ausgibt und welche Spalte für die Labels ist)
 * Database-Radio - siehe Database-Select
 * Database-Checkbox - siehe Database-Select
@@ -17,6 +18,7 @@ With the DatabaseFormFieldOptions Bundle, new input field types are added to the
 
 * Country select
 * Language-Select
+* Gender-Select
 * Database-Select (stating which table, which column outputs the options and which column is for the labels)
 * Database-Radio - see Database-Select
 * Database-Checkbox - see Database-Select
@@ -39,3 +41,4 @@ Compatibility
 -------------
 
 - Contao version ~4.9
+- Contao version ~4.13
