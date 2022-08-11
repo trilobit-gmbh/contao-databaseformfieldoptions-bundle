@@ -52,11 +52,16 @@ class Options extends Widget
         $value = $field->sourceValue;
         $label = $field->sourceLabel;
 
-        $where = ('' !== $field->sourceWhere ? 'WHERE '.$field->sourceWhere : '');
-        $order = ('' !== $field->sourceOrder ? 'ORDER BY '.('' !== $group ? $group.',' : '').$field->sourceOrder : '');
+        $where = ('' !== $field->sourceWhere ? 'WHERE '.str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceWhere) : '');
+        $order = ('' !== $field->sourceOrder ? 'ORDER BY '.('' !== $group ? $group.',' : '').str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceOrder) : '');
 
-        $result = Database::getInstance()->prepare('SELECT DISTINCT '.$value.','.$label.('' !== $group ? ','.$group : '')." FROM $table $where $order")
-            ->execute();
+        try {
+            $result = Database::getInstance()
+                ->prepare('SELECT DISTINCT '.$value.','.$label.('' !== $group ? ','.$group : '')." FROM $table $where $order")
+                ->execute();
+        } catch (\Exception $e) {
+            $result = null;
+        }
 
         $arrOptions = [];
         $chkCurrentGroup = '';
