@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * @copyright  trilobit GmbH
  * @author     trilobit GmbH <https://github.com/trilobit-gmbh>
  * @license    LGPL-3.0-or-later
- * @link       http://github.com/trilobit-gmbh/contao-databaseformfieldoptions-bundle
  */
 
 namespace Trilobit\DatabaseformfieldoptionsBundle\DataContainer;
@@ -58,7 +59,8 @@ class Options extends Widget
         try {
             $result = Database::getInstance()
                 ->prepare('SELECT DISTINCT '.$value.','.$label.('' !== $group ? ','.$group : '')." FROM $table $where $order")
-                ->execute();
+                ->execute()
+            ;
         } catch (\Exception $e) {
             $result = null;
         }
