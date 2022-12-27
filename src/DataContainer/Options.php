@@ -72,7 +72,7 @@ class Options extends Widget
             $arrOptions = [[
                 'type' => 'option',
                 'value' => '',
-                'selected' => $field->isSelected(['value' => '']),
+                'selected' => method_exists($field, 'isSelected') ? $field->isSelected(['value' => '']) : ['value' => ''],
                 'label' => '-',
             ]];
         }
@@ -106,7 +106,7 @@ class Options extends Widget
                     'name' => $field->strName,
                     'id' => $field->strId.'_'.$i,
                     'value' => html_entity_decode((string) $result->{$value}),
-                    'attributes' => $field->getAttributes(),
+                    //'attributes' => $field->getAttributes(),
                     'label' => $result->{$label},
                 ];
 
