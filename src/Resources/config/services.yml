@@ -1,0 +1,4 @@
+services:
+  trilobit_contao_databaseformfieldoptions.select.country:
+    class: Trilobit\DatabaseformfieldoptionsBundle\Form\SelectMenuCountry
+    public: true

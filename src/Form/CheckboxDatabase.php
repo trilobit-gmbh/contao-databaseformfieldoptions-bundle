@@ -11,13 +11,12 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormCheckBox;
 use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 
 /**
  * Class FormCheckboxDatabase.
  */
-class CheckboxDatabase extends FormCheckBox
+class CheckboxDatabase extends Checkbox
 {
     /**
      * Template.

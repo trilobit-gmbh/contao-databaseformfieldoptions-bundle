@@ -11,13 +11,14 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormSelectMenu;
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\StringUtil;
+use Contao\System;
 
 /**
  * Class FormSelectMenuCountry.
  */
-class SelectMenuCountry extends FormSelectMenu
+class SelectMenuCountry extends Select
 {
     /**
      * Template.
@@ -55,7 +56,18 @@ class SelectMenuCountry extends FormSelectMenu
             ]];
         }
 
-        $arrCountries = Controller::getCountries();
+        $version = (method_exists(ContaoCoreBundle::class, 'getVersion') ? ContaoCoreBundle::getVersion() : VERSION);
+
+        if (version_compare($version, '4.9', '>')) {
+            $arrCountries = System::getContainer()
+                ->get('contao.intl.countries')
+                ->getCountries()
+            ;
+
+            $arrCountries = array_combine(array_map('strtolower', array_keys($arrCountries)), $arrCountries);
+        } else {
+            $arrCountries = Controller::getCountries();
+        }
 
         foreach ($arrCountries as $value => $label) {
             $arrOptions[] = [

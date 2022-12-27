@@ -46,7 +46,7 @@ class Options extends Widget
         return Database::getInstance()->getFieldNames($dc->activeRecord->sourceTable);
     }
 
-    public function prepareOptions($field)
+    public function prepareOptions($field): array
     {
         $table = $field->sourceTable;
         $group = $field->sourceGroupBy;
@@ -67,7 +67,6 @@ class Options extends Widget
 
         $arrOptions = [];
         $chkCurrentGroup = '';
-        $currentGroup = '';
 
         if ($field->addBlankOption) {
             $arrOptions = [[
@@ -106,7 +105,7 @@ class Options extends Widget
                     'type' => 'option',
                     'name' => $field->strName,
                     'id' => $field->strId.'_'.$i,
-                    'value' => html_entity_decode($result->{$value}),
+                    'value' => html_entity_decode((string) $result->{$value}),
                     'attributes' => $field->getAttributes(),
                     'label' => $result->{$label},
                 ];

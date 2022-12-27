@@ -30,7 +30,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields'] = array_merge(
             'search' => true,
             'inputType' => 'select',
             'options_callback' => [Options::class, 'getAllTables'],
-            'eval' => ['mandatory' => true, 'submitOnChange' => true, 'chosen' => true, 'tl_class' => 'clr w50'],
+            'eval' => ['mandatory' => true, 'submitOnChange' => true, 'includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'clr w50'],
             'sql' => "varchar(64) NOT NULL default ''",
         ],
         'sourceGroupBy' => [

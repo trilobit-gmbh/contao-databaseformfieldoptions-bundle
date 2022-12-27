@@ -11,13 +11,14 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormSelectMenu;
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\StringUtil;
+use Contao\System;
 
 /**
  * Class FormSelectMenuCountry.
  */
-class SelectMenuLanguage extends FormSelectMenu
+class SelectMenuLanguage extends Select
 {
     /**
      * Template.
@@ -55,7 +56,18 @@ class SelectMenuLanguage extends FormSelectMenu
             ]];
         }
 
-        $arrLanguages = Controller::getLanguages();
+        $version = (method_exists(ContaoCoreBundle::class, 'getVersion') ? ContaoCoreBundle::getVersion() : VERSION);
+
+        if (version_compare($version, '4.9', '>')) {
+            $arrLanguages = System::getContainer()
+                ->get('contao.intl.locales')
+                ->getLocales()
+            ;
+
+            $arrLanguages = array_combine(array_map('strtolower', array_keys($arrLanguages)), $arrLanguages);
+        } else {
+            $arrLanguages = Controller::getLanguages();
+        }
 
         foreach ($arrLanguages as $value => $label) {
             $arrOptions[] = [

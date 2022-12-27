@@ -11,13 +11,12 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormRadioButton;
 use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 
 /**
  * Class FormRadioDatabase.
  */
-class RadioDatabase extends FormRadioButton
+class RadioDatabase extends Radio
 {
     /**
      * Template.

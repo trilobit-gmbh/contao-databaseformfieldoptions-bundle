@@ -11,13 +11,12 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormSelectMenu;
 use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 
 /**
  * Class FormSelectMenuDatabase.
  */
-class SelectMenuDatabase extends FormSelectMenu
+class SelectMenuDatabase extends Select
 {
     /**
      * Template.
