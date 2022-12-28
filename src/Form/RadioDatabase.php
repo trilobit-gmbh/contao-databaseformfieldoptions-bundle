@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
+use Contao\CoreBundle\ContaoCoreBundle;
+use Contao\System;
 use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 
 /**
@@ -37,7 +39,13 @@ class RadioDatabase extends Radio
         $this->arrOptions = $this->getOptions();
 
         if ($this->value) {
-            $this->varValue = Controller::replaceInsertTags($this->value);
+            $version = (method_exists(ContaoCoreBundle::class, 'getVersion') ? ContaoCoreBundle::getVersion() : VERSION);
+
+            if (version_compare($version, '5.0', '>=')) {
+                $this->varValue = System::getContainer()->get('contao.insert_tag.parser')->replace($this->value);
+            } else {
+                $this->varValue = Controller::replaceInsertTags($this->value);
+            }
         }
     }
 
