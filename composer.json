@@ -1,6 +1,6 @@
 {
     "name": "trilobit-gmbh/contao-databaseformfieldoptions-bundle",
-    "description": "Contao 4 database formfield options bundle",
+    "description": "Contao 4 / Contao 5 database formfield options bundle",
     "type": "contao-bundle",
     "license": "LGPL-3.0-or-later",
     "authors": [
