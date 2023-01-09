@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * @copyright  trilobit GmbH
  * @author     trilobit GmbH <https://github.com/trilobit-gmbh>
  * @license    LGPL-3.0-or-later
- * @link       http://github.com/trilobit-gmbh/contao-databaseformfieldoptions-bundle
  */
 
 use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
@@ -29,7 +30,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields'] = array_merge(
             'search' => true,
             'inputType' => 'select',
             'options_callback' => [Options::class, 'getAllTables'],
-            'eval' => ['mandatory' => true, 'submitOnChange' => true, 'chosen' => true, 'tl_class' => 'clr w50'],
+            'eval' => ['mandatory' => true, 'submitOnChange' => true, 'includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'clr w50'],
             'sql' => "varchar(64) NOT NULL default ''",
         ],
         'sourceGroupBy' => [

@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * @copyright  trilobit GmbH
  * @author     trilobit GmbH <https://github.com/trilobit-gmbh>
  * @license    LGPL-3.0-or-later
- * @link       http://github.com/trilobit-gmbh/contao-databaseformfieldoptions-bundle
  */
 
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormCheckBox;
+use Contao\CoreBundle\ContaoCoreBundle;
+use Contao\System;
 use Trilobit\DatabaseformfieldoptionsBundle\DataContainer\Options;
 
 /**
  * Class FormCheckboxDatabase.
  */
-class CheckboxDatabase extends FormCheckBox
+class CheckboxDatabase extends Checkbox
 {
     /**
      * Template.
@@ -37,7 +39,13 @@ class CheckboxDatabase extends FormCheckBox
         $this->arrOptions = $this->getOptions();
 
         if ($this->value) {
-            $this->varValue = Controller::replaceInsertTags($this->value);
+            $version = (method_exists(ContaoCoreBundle::class, 'getVersion') ? ContaoCoreBundle::getVersion() : VERSION);
+
+            if (version_compare($version, '5.0', '>=')) {
+                $this->varValue = System::getContainer()->get('contao.insert_tag.parser')->replace($this->value);
+            } else {
+                $this->varValue = Controller::replaceInsertTags($this->value);
+            }
         }
     }
 

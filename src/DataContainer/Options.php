@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * @copyright  trilobit GmbH
  * @author     trilobit GmbH <https://github.com/trilobit-gmbh>
  * @license    LGPL-3.0-or-later
- * @link       http://github.com/trilobit-gmbh/contao-databaseformfieldoptions-bundle
  */
 
 namespace Trilobit\DatabaseformfieldoptionsBundle\DataContainer;
@@ -45,7 +46,7 @@ class Options extends Widget
         return Database::getInstance()->getFieldNames($dc->activeRecord->sourceTable);
     }
 
-    public function prepareOptions($field)
+    public function prepareOptions($field): array
     {
         $table = $field->sourceTable;
         $group = $field->sourceGroupBy;
@@ -58,20 +59,20 @@ class Options extends Widget
         try {
             $result = Database::getInstance()
                 ->prepare('SELECT DISTINCT '.$value.','.$label.('' !== $group ? ','.$group : '')." FROM $table $where $order")
-                ->execute();
+                ->execute()
+            ;
         } catch (\Exception $e) {
             $result = null;
         }
 
         $arrOptions = [];
         $chkCurrentGroup = '';
-        $currentGroup = '';
 
         if ($field->addBlankOption) {
             $arrOptions = [[
                 'type' => 'option',
                 'value' => '',
-                'selected' => $field->isSelected(['value' => '']),
+                'selected' => method_exists($field, 'isSelected') ? $field->isSelected(['value' => '']) : ['value' => ''],
                 'label' => '-',
             ]];
         }
@@ -104,8 +105,8 @@ class Options extends Widget
                     'type' => 'option',
                     'name' => $field->strName,
                     'id' => $field->strId.'_'.$i,
-                    'value' => html_entity_decode($result->{$value}),
-                    'attributes' => $field->getAttributes(),
+                    'value' => html_entity_decode((string) $result->{$value}),
+                    //'attributes' => $field->getAttributes(),
                     'label' => $result->{$label},
                 ];
 
