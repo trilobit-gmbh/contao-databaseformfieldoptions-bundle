@@ -1,22 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * @copyright  trilobit GmbH
  * @author     trilobit GmbH <https://github.com/trilobit-gmbh>
  * @license    LGPL-3.0-or-later
- * @link       http://github.com/trilobit-gmbh/contao-databaseformfieldoptions-bundle
  */
 
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 use Contao\Controller;
-use Contao\FormSelectMenu;
 use Contao\StringUtil;
 
 /**
  * Class FormSelectMenuCountry.
  */
-class SelectMenuGender extends FormSelectMenu
+class SelectMenuGender extends Select
 {
     /**
      * Template.
@@ -54,8 +54,8 @@ class SelectMenuGender extends FormSelectMenu
             ]];
         }
 
-        \Controller::loadDataContainer('tl_member');
-        \Controller::loadLanguageFile('default');
+        Controller::loadDataContainer('tl_member');
+        Controller::loadLanguageFile('default');
 
         $arrGender = $GLOBALS['TL_DCA']['tl_member']['fields']['gender']['options'];
 
