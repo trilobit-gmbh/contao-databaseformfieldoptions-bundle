@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
-if (class_exists('FormRadioButton')) {
+if (class_exists('\Contao\FormRadioButton')) {
     class Radio extends \Contao\FormRadioButton
     {
     }
