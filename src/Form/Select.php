@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
-if (class_exists('FormSelectMenu')) {
+if (class_exists('\Contao\FormSelectMenu')) {
     class Select extends \Contao\FormSelectMenu
     {
     }
