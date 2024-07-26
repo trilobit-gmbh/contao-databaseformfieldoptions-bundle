@@ -36,7 +36,7 @@ class CheckboxDatabase extends Checkbox
     {
         parent::__construct($arrAttributes);
 
-        $this->arrOptions = $this->getOptions();
+        $this->arrOptions = (new Options())->prepareOptions($this);
 
         if ($this->value) {
             $version = (method_exists(ContaoCoreBundle::class, 'getVersion') ? ContaoCoreBundle::getVersion() : VERSION);
@@ -47,12 +47,5 @@ class CheckboxDatabase extends Checkbox
                 $this->varValue = Controller::replaceInsertTags($this->value);
             }
         }
-    }
-
-    public function getOptions(): array
-    {
-        $this->arrOptions = (new Options())->prepareOptions($this);
-
-        return parent::getOptions();
     }
 }
