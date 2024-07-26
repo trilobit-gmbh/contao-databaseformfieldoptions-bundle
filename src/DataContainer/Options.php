@@ -46,75 +46,69 @@ class Options extends Widget
         return Database::getInstance()->getFieldNames($dc->activeRecord->sourceTable);
     }
 
-    public function prepareOptions($field): array
+    protected function getDatabaseResult($field): ?Database\Result
     {
-        $table = $field->sourceTable;
-        $group = $field->sourceGroupBy;
-        $value = $field->sourceValue;
-        $label = $field->sourceLabel;
-
-        $where = ('' !== $field->sourceWhere ? 'WHERE '.str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceWhere) : '');
-        $order = ('' !== $field->sourceOrder ? 'ORDER BY '.('' !== $group ? $group.',' : '').str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceOrder) : '');
+        $where = ('' !== $field->sourceWhere
+            ? 'WHERE '.str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceWhere)
+            : ''
+        );
+        $order = ('' !== $field->sourceOrder
+            ? 'ORDER BY '.('' !== $field->sourceGroupBy ? $field->sourceGroupBy.',' : '').str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceOrder)
+            : ''
+        );
 
         try {
-            $result = Database::getInstance()
-                ->prepare('SELECT DISTINCT '.$value.','.$label.('' !== $group ? ','.$group : '')." FROM $table $where $order")
+            return Database::getInstance()
+                ->prepare('SELECT DISTINCT '.$field->sourceValue.','.$field->sourceLabel.('' !== $field->sourceGroupBy ? ','.$field->sourceGroupBy : '')." FROM $field->sourceTable $where $order")
                 ->execute()
             ;
         } catch (\Exception $e) {
-            $result = null;
+            return null;
         }
+    }
 
-        $arrOptions = [];
-        $chkCurrentGroup = '';
+    public function prepareOptions($field): array
+    {
+        $options = [];
+        $lastGroup = '';
 
         if ($field->addBlankOption) {
-            $arrOptions = [[
-                'type' => 'option',
+            $options = [[
                 'value' => '',
-                'selected' => method_exists($field, 'isSelected') ? $field->isSelected(['value' => '']) : ['value' => ''],
                 'label' => '-',
             ]];
         }
 
-        if (null !== $result) {
-            $i = 0;
+        $result = $this->getDatabaseResult($field);
 
-            while ($result->next()) {
-                $blnGroup = false;
-
-                // Prepare group
-                $currentGroup = $result->{$group};
-
-                if ('' !== $group
-                    && $currentGroup !== $chkCurrentGroup
-                ) {
-                    $chkCurrentGroup = $currentGroup;
-                    $blnGroup = true;
-                }
-
-                if ($blnGroup) {
-                    $arrOptions[] = [
-                        'value' => '',
-                        'label' => $chkCurrentGroup,
-                        'group' => '1',
-                    ];
-                }
-
-                $arrOptions[] = [
-                    'type' => 'option',
-                    'name' => $field->strName,
-                    'id' => $field->strId.'_'.$i,
-                    'value' => html_entity_decode((string) $result->{$value}),
-                    //'attributes' => $field->getAttributes(),
-                    'label' => $result->{$label},
-                ];
-
-                ++$i;
-            }
+        if (null === $result) {
+            return $options;
         }
 
-        // other custom options
-        return array_merge($arrOptions, StringUtil::deserialize($field->sourceCustomOptions, true));
+        while ($result->next()) {
+            $currentGroup = $result->{$field->sourceGroupBy};
+
+            if ('' !== $field->sourceGroupBy
+                && $currentGroup !== $lastGroup
+            ) {
+                $options[] = [
+                    'value' => $currentGroup,
+                    'label' => $currentGroup,
+                    'group' => '1',
+                ];
+
+                $lastGroup = $currentGroup;
+            }
+
+            $options[] = [
+                'value' => html_entity_decode((string) $result->{$field->sourceValue}),
+                'label' => $result->{$field->sourceLabel},
+            ];
+        }
+
+        return array_merge(
+            $options,
+            StringUtil::deserialize($field->sourceCustomOptions, true)
+        );
     }
 }

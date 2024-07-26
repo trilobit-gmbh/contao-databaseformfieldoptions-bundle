@@ -36,7 +36,7 @@ class SelectMenuDatabase extends Select
     {
         parent::__construct($arrAttributes);
 
-        $this->arrOptions = $this->getOptions();
+        $this->arrOptions = (new Options())->prepareOptions($this);
 
         if ($this->value) {
             $version = (method_exists(ContaoCoreBundle::class, 'getVersion') ? ContaoCoreBundle::getVersion() : VERSION);
@@ -47,12 +47,5 @@ class SelectMenuDatabase extends Select
                 $this->varValue = Controller::replaceInsertTags($this->value);
             }
         }
-    }
-
-    protected function getOptions(): array
-    {
-        $this->arrOptions = (new Options())->prepareOptions($this);
-
-        return parent::getOptions();
     }
 }
