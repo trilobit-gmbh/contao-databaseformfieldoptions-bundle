@@ -21,9 +21,6 @@ use Trilobit\DatabaseformfieldoptionsBundle\TrilobitDatabaseformfieldoptionsBund
  */
 class Plugin implements BundlePluginInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getBundles(ParserInterface $parser)
     {
         return [
