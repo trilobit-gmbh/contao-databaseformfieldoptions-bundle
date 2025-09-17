@@ -13,6 +13,7 @@ namespace Trilobit\DatabaseformfieldoptionsBundle\DataContainer;
 use Contao\Database;
 use Contao\DataContainer;
 use Contao\StringUtil;
+use Contao\System;
 use Contao\Widget;
 
 /**
@@ -34,7 +35,15 @@ class Options extends Widget
 
     public static function getAllTables()
     {
-        return Database::getInstance()->listTables();
+        $tables = Database::getInstance()->listTables();
+        $views = System::getContainer()->get('database_connection')->createSchemaManager()->listViews();
+
+        if (!empty($views)) {
+            $tables = array_merge($tables, array_keys($views));
+            natsort($tables);
+        }
+
+        return array_values($tables);
     }
 
     public static function getAllTableFields(DataContainer $dc)
