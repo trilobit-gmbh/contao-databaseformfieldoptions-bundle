@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 if (class_exists('\Contao\FormSelectMenu')) {
-    class Select extends \Contao\FormSelectMenu
+    class Select extends \Contao\FormSelect
     {
     }
 } else {

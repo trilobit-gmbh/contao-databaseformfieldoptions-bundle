@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace Trilobit\DatabaseformfieldoptionsBundle\Form;
 
 if (class_exists('FormCheckBox')) {
-    class Checkbox extends \Contao\FormCheckBox
+    class Checkbox extends \Contao\FormCheckbox
     {
     }
 } else {
