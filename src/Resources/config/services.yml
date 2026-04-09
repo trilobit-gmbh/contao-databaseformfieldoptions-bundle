@@ -10,6 +10,7 @@ services:
     trilobit_contao_constants.listener.insert_tags:
         class: Trilobit\ConstantsBundle\EventListener\InsertTagsListener
         public: true
+
     trilobit_contao_databaseformfieldoptions.select.country:
         class: Trilobit\DatabaseformfieldoptionsBundle\Form\SelectMenuCountry
         public: true
