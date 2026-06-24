@@ -57,18 +57,41 @@ class Options extends Widget
 
     protected function getDatabaseResult($field): ?Database\Result
     {
-        $where = ('' !== $field->sourceWhere
-            ? 'WHERE '.str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceWhere)
+        $where = (!empty($field->sourceWhere)
+            ? 'WHERE '
+                .str_replace(
+                    ['&lt;', '&gt;', '\''],
+                    ['<', '>', ''],
+                    $field->sourceWhere
+                )
             : ''
         );
-        $order = ('' !== $field->sourceOrder
-            ? 'ORDER BY '.('' !== $field->sourceGroupBy ? $field->sourceGroupBy.',' : '').str_replace(['&lt;', '&gt;', '\''], ['<', '>', ''], $field->sourceOrder)
+
+        $order = (!empty($field->sourceOrder)
+            ? 'ORDER BY '
+                .(!empty($field->sourceGroupBy)
+                    ? $field->sourceGroupBy.','
+                    : ''
+                )
+                .str_replace(
+                    ['&lt;', '&gt;', '\''],
+                    ['<', '>', ''],
+                    $field->sourceOrder
+                )
             : ''
         );
 
         try {
             return Database::getInstance()
-                ->prepare('SELECT DISTINCT '.$field->sourceValue.','.$field->sourceLabel.('' !== $field->sourceGroupBy ? ','.$field->sourceGroupBy : '')." FROM $field->sourceTable $where $order")
+                ->prepare('SELECT DISTINCT '
+                    .$field->sourceValue
+                    .','.$field->sourceLabel
+                    .(!empty($field->sourceGroupBy)
+                        ? ','.$field->sourceGroupBy
+                        : ''
+                    )
+                    .' FROM '.$field->sourceTable.' '.$where.' '.$order
+                )
                 ->execute()
             ;
         } catch (\Exception $e) {
